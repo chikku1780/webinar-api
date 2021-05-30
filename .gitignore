@@ -108,3 +108,6 @@ dist
 
 # example files
 examples/
+
+#backup files
+backup/

@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const Router = require('koa-router');
-const log = require('debug-level').log('webinar-api');
+const log = require('debug-level').log('webinar-api:api');
 // Local
 // Variables
 const {serverConfig} = require('../config').server || {};
@@ -19,6 +19,7 @@ function applyApiMiddleware(app) {
 		.filter(file => file.indexOf('.') !== 0 && file !== baseName)
 		.forEach(file => {
 			const api = require(path.join(__dirname, file))(Router);
+			// log.log('file > %s  - api > %o', file, api);
 			router.use(api.routes());
 		});
 	

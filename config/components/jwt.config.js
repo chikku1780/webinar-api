@@ -10,14 +10,8 @@ const log = require('debug-level').log('webinar-api:config');
  */
 const envSchema = joi
 	.object({
-		MONGO_DB_USER: joi.string(),
-		MONGO_DB_HOST: joi.string(),
-		MONGO_DB_PASSWORD: joi
-			.string()
-			.optional()
-			.empty(''),
-		MONGO_DB_DATABASE: joi.string(),
-		MONGO_DB_PORT: joi.number(),
+		JWT_ENABLE: joi.boolean(),
+		JWT_SECRET: joi.string(),
 	})
 	.unknown()
 	.required();
@@ -31,16 +25,8 @@ if (error) {
 }
 
 const config = {
-	databaseConfig: {
-		mongodb: {
-			host: envVars.MONGO_DB_HOST || '127.0.0.1',
-			user: envVars.MONGO_DB_USER || '',
-			password: envVars.MONGO_DB_PASSWORD || '',
-			database: envVars.MONGO_DB_DATABASE || 'testing',
-			port: envVars.MONGO_DB_PORT || 27017,
-			options: {},
-		},
-	},
+	enableJWT: envVars.JWT_ENABLE || false,
+	secretJWT: envVars.JWT_SECRET || 'jwt_secret',
 };
 
 module.exports = config;

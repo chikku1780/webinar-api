@@ -33,7 +33,7 @@ service.findById = async (studentId) => {
 		student = db.students.find(student => student.id === studentId) || {};
 		// student = new Student(student);
 	} catch (err) {
-		log.error('Error > %o ', err);
+		log.error(err);
 	}
 	return student;
 };
@@ -44,7 +44,7 @@ service.findByName = async (studentName) => {
 		student = db.students.find(student => student.name === studentName) || {};
 		// student = new Student(student);
 	} catch (err) {
-		log.error('Error > %o ', err);
+		log.error(err);
 	}
 	return student;
 };
@@ -56,7 +56,7 @@ service.getAll = async () => {
 		log.log('students > %o ', students);
 		// students = students.map((student) => new Student(student));
 	} catch (err) {
-		log.error('Error > %o ', err);
+		log.error(err);
 	}
 	return students;
 };
@@ -75,7 +75,7 @@ service.create = async (student) => {
 		db.students.push(newUser);
 		createdStudent = service.findById(id) || {};
 	} catch (err) {
-		log.error('Error > %o ', err);
+		log.error(err);
 	}
 	return createdStudent;
 };
